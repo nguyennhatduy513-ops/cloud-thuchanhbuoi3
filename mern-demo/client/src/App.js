@@ -6,7 +6,7 @@ function App() {
   const [students, setStudents] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
-    studentId: '',
+   studentCode: '', 
     email: '',
     major: ''
   });
@@ -34,7 +34,7 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.studentId) {
+    if (!formData.name || !formData.studentCode) {
       alert('Vui lòng nhập đầy đủ Họ tên và Mã SV!');
       return;
     }
@@ -55,7 +55,7 @@ function App() {
         });
       }
 
-      setFormData({ name: '', studentId: '', email: '', major: '' });
+      setFormData({ name: '', studentCode: '', email: '', major: '' });
       fetchStudents();
     } catch (error) {
       console.error('Lỗi khi lưu dữ liệu:', error);
@@ -66,7 +66,7 @@ function App() {
     setEditingId(student._id || student.id);
     setFormData({
       name: student.name || '',
-      studentId: student.studentId || '',
+      studentCode: student.studentCode || '',
       email: student.email || '',
       major: student.major || ''
     });
@@ -97,9 +97,9 @@ function App() {
         />
         <input
           type="text"
-          name="studentId"
+          name="studentCode"
           placeholder="Mã SV"
-          value={formData.studentId}
+          value={formData.studentCode}
           onChange={handleChange}
         />
         <input
@@ -124,7 +124,7 @@ function App() {
             type="button"
             onClick={() => {
               setEditingId(null);
-              setFormData({ name: '', studentId: '', email: '', major: '' });
+              setFormData({ name: '', studentCode: '', email: '', major: '' });
             }}
           >
             Hủy
@@ -146,7 +146,7 @@ function App() {
           {students.length > 0 ? (
             students.map((sv) => (
               <tr key={sv._id || sv.id}>
-                <td>{sv.studentId}</td>
+                <td>{sv.studentCode}</td>
                 <td>{sv.name}</td>
                 <td>{sv.email}</td>
                 <td>{sv.major}</td>
